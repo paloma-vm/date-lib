@@ -92,31 +92,34 @@ class D {
         }
     }
 
+    when() {
+        const now = new Date()
+        const diff = now - this._date
+        const seconds = Math.floor(diff / 1000)
+        const minutes = Math.floor(seconds / 60)
+        const hours = Math.floor(minutes / 60)
+        const days = Math.floor(hours / 24)
+        const months = Math.floor(days / 30)
+        const years = Math.floor(months / 12)
 
+        if (years > 0) {
+            return `${years} years ago`
+        } else if (months > 0) {
+            return `${months} months ago`
+        } else if (days > 0) {
+            return `${days} days ago`
+        } else if (hours > 0) {
+            return `${hours} hours ago`
+        } else if (minutes > 0) {
+            return `${minutes} minutes ago`
+        } else if (seconds > 0) {
+            return `${seconds} seconds ago`
+        } else {
+            return 'today'
+        }
 
+    }
 }
 
 module.exports = D
 
-const d = new D(2019, 0, 1)
-console.log(d)
-console.log(d.year) // 2019
-console.log(d.day) // Tuesday
-console.log(d.month) // January
-console.log(d.mon) // Jan
-console.log(d.date) // 1
-console.log(d.hours) // 
-console.log(d.mins) // 
-console.log(d.secs) // 
-// ******************************
-const ok = new D()
-console.log(ok.year)
-console.log(ok.day)
-
-// Make a date with values for Y, M, D etc.
-const newDate = new D(2017, 0, 2, 3, 4, 5)
-console.log(newDate.format())              // 2017 January 02
-console.log(newDate.format('y/m/d'))       // 17/Jan/2
-console.log(newDate.format('H:I:S'))       // 03:04:05
-console.log(newDate.format('h:i:s'))       // 3:4:5
-console.log(newDate.format('Y-M-D h:I:S')) // 2017-January-02 3:04:05 
